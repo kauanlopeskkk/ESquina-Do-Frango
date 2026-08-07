@@ -1,0 +1,17 @@
+services:
+  loja:
+    build: .
+    container_name: eskina-loja
+    ports:
+      - "3000:3000"
+    environment:
+      ADMIN_SENHA: ${ADMIN_SENHA:-troque-essa-senha}
+      PORTA: 3000
+      BANCO: /app/dados/loja.db
+    volumes:
+      # o banco fica fora do container, então não some quando você recria a imagem
+      - eskina-dados:/app/dados
+    restart: unless-stopped
+
+volumes:
+  eskina-dados:

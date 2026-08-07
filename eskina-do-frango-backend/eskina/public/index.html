@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eskina do Frango e Frios — Pernambuco</title>
+<meta name="description" content="Frango fresco todo dia, frios fatiados na hora e o básico do mês. Peça pelo site e retire na loja ou receba em casa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="#topo">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse cx="32" cy="42" rx="19" ry="18" fill="#fff"/>
+        <circle cx="32" cy="22" r="12" fill="#fff"/>
+        <path d="M26 11c0-4 5-5 6-1 1-4 6-4 6 1 0 3-3 5-6 5s-6-2-6-5z" fill="#E23A26"/>
+        <path d="M44 24l6 3-6 3z" fill="#FFD400"/>
+        <circle cx="36" cy="21" r="2.4" fill="#15210F"/>
+        <path d="M20 40c4 5 4 12 1 16-5-3-6-11-1-16z" fill="#FFD400"/>
+      </svg>
+      <span>
+        <b>Eskina do <em>Frango</em></b>
+        <small>e Frios · Pernambuco</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#destaques">Ofertas</a>
+      <a href="#catalogo">Produtos</a>
+      <a href="#loja">A loja</a>
+      <a href="#painel">Área do dono</a>
+    </nav>
+    <button class="btn-carrinho" id="abrirCarrinho">
+      Carrinho <span class="contador" id="contador">0</span>
+    </button>
+  </div>
+</header>
+
+<div class="carro-som" aria-hidden="true"><div class="fita" id="fita"></div></div>
+
+<main id="topo">
+  <section class="hero">
+    <div class="limite hero-grade">
+      <div>
+        <span class="selo-topo">Aberto hoje · Peça pelo WhatsApp</span>
+        <h1>Frango fresco<em>todo dia</em></h1>
+        <p>Frango abatido na hora, frios fatiados na medida que você quiser e o básico do mês, tudo na mesma esquina. Escolha aqui e a gente separa pra você.</p>
+        <div class="acoes">
+          <a class="bt bt-zap" href="#catalogo">Ver o que tem hoje</a>
+          <a class="bt bt-vazio" id="linkZapHero" href="#loja">Falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="cartaz" id="cartaz"></div>
+    </div>
+  </section>
+
+  <section class="bloco limite" id="destaques">
+    <div class="cabeca">
+      <div>
+        <h2>Ofertas da <em>semana</em></h2>
+        <p>O que está saindo mais barato até sábado.</p>
+      </div>
+    </div>
+    <div class="grade" id="gradeDestaques"></div>
+  </section>
+
+  <section class="bloco limite" id="catalogo" style="padding-top:0">
+    <div class="cabeca">
+      <div>
+        <h2>Tudo na <em>prateleira</em></h2>
+        <p>Preço por quilo é cobrado conforme a pesagem na loja.</p>
+      </div>
+      <div class="filtros" id="filtros"></div>
+    </div>
+    <div class="grade" id="gradeCatalogo"></div>
+  </section>
+
+  <section class="info" id="loja">
+    <div class="limite info-grade">
+      <div><h4>Onde fica</h4><p id="infoEndereco"></p></div>
+      <div><h4>Horário</h4><p id="infoHorario"></p></div>
+      <div><h4>Pedido e entrega</h4><p id="infoEntrega"></p></div>
+      <div><h4>Fale com a gente</h4><p><a id="infoZap" href="#">WhatsApp da loja</a></p></div>
+    </div>
+  </section>
+
+  <section class="painel" id="painel">
+    <div class="limite">
+      <h2>Área do dono</h2>
+
+      <!-- ---------- login ---------- -->
+      <div id="telaLogin">
+        <p class="painel-sub">Entre com a senha para cadastrar produtos e ver os pedidos.</p>
+        <div class="caixa" style="max-width:360px">
+          <h3>Entrar</h3>
+          <label class="campo"><span>Senha</span><input type="password" id="senhaDono" autocomplete="current-password"></label>
+          <button class="b-salvar" id="entrar">Entrar</button>
+        </div>
+      </div>
+
+      <!-- ---------- painel ---------- -->
+      <div id="telaPainel" hidden>
+        <div class="painel-topo">
+          <p class="painel-sub">Tudo o que você salvar aqui vai direto pro banco de dados e aparece na loja na hora.</p>
+          <button class="mini" id="sair">Sair</button>
+        </div>
+
+        <div class="abas">
+          <button class="aba" data-aba="produtos" aria-pressed="true">Produtos</button>
+          <button class="aba" data-aba="pedidos" aria-pressed="false">Pedidos</button>
+          <button class="aba" data-aba="loja" aria-pressed="false">Dados da loja</button>
+        </div>
+
+        <!-- produtos -->
+        <div class="painel-grade" data-painel="produtos">
+          <div class="caixa">
+            <h3 id="tituloForm">Cadastrar produto</h3>
+            <label class="campo"><span>Nome do produto</span><input type="text" id="pNome" placeholder="Ex: Coxa e sobrecoxa"></label>
+            <label class="campo"><span>Categoria</span>
+              <select id="pCat">
+                <option>Frango</option><option>Frios e queijos</option><option>Mercearia</option>
+                <option>Bebidas</option><option>Hortifruti</option><option>Limpeza</option>
+              </select>
+            </label>
+            <label class="campo"><span>Preço em reais</span><input type="number" id="pPreco" step="0.01" min="0" placeholder="11.90"></label>
+            <label class="campo"><span>Unidade</span>
+              <select id="pUn"><option>kg</option><option>un</option><option>dz</option><option>pct</option><option>L</option></select>
+            </label>
+            <label class="campo"><span>Figurinha do produto</span><input type="text" id="pIcone" maxlength="4" placeholder="🍗"></label>
+            <label class="opcao" style="margin-bottom:14px"><input type="checkbox" id="pDest"> Mostrar nas ofertas da semana</label>
+            <button class="b-salvar" id="salvarProduto">Salvar produto</button>
+            <button class="mini" id="cancelarEdicao" style="width:100%;margin:9px 0 0;display:none">Cancelar edição</button>
+          </div>
+
+          <div class="caixa">
+            <h3>Produtos cadastrados (<span id="qtdProdutos">0</span>)</h3>
+            <table class="tabela">
+              <thead><tr><th>Produto</th><th class="esconde">Categoria</th><th>Preço</th><th></th></tr></thead>
+              <tbody id="listaAdmin"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- pedidos -->
+        <div class="caixa" data-painel="pedidos" hidden>
+          <h3>Últimos pedidos</h3>
+          <div id="listaPedidos"></div>
+        </div>
+
+        <!-- dados da loja -->
+        <div class="caixa" data-painel="loja" hidden style="max-width:420px">
+          <h3>Dados da loja</h3>
+          <label class="campo"><span>WhatsApp (com DDD)</span><input type="text" id="cZap" placeholder="81 9xxxx-xxxx"></label>
+          <label class="campo"><span>Chave PIX</span><input type="text" id="cPix" placeholder="CNPJ, telefone ou e-mail"></label>
+          <label class="campo"><span>Endereço</span><input type="text" id="cEnd" placeholder="Rua, número, bairro"></label>
+          <label class="campo"><span>Horário</span><input type="text" id="cHora" placeholder="Seg a sáb, 7h às 20h"></label>
+          <label class="campo"><span>Taxa de entrega (R$)</span><input type="number" id="cTaxa" step="0.5" min="0" placeholder="5"></label>
+          <button class="b-salvar" id="salvarConfig">Salvar dados</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="fundo" id="fundo"></div>
+<aside class="gaveta" id="gaveta" aria-label="Carrinho">
+  <header>
+    <h2>Seu carrinho</h2>
+    <button class="fechar" id="fecharCarrinho" aria-label="Fechar carrinho">✕</button>
+  </header>
+  <div class="rolagem">
+    <div id="itensCarrinho"></div>
+
+    <fieldset id="blocoEntrega">
+      <legend>Como você quer receber</legend>
+      <div class="opcoes">
+        <label class="opcao"><input type="radio" name="entrega" value="retirar" checked> Retirar na loja <span class="dica">sem taxa</span></label>
+        <label class="opcao"><input type="radio" name="entrega" value="entrega"> Entrega em casa <span class="dica" id="dicaTaxa"></span></label>
+      </div>
+      <div id="campoEndereco" style="display:none;margin-top:9px">
+        <label class="campo"><span>Endereço da entrega</span><input type="text" id="endCliente" placeholder="Rua, número, bairro e ponto de referência"></label>
+      </div>
+    </fieldset>
+
+    <fieldset id="blocoPagamento">
+      <legend>Forma de pagamento</legend>
+      <div class="opcoes">
+        <label class="opcao"><input type="radio" name="pgto" value="PIX" checked> PIX <span class="dica">na hora</span></label>
+        <label class="opcao"><input type="radio" name="pgto" value="Cartão de débito"> Cartão de débito</label>
+        <label class="opcao"><input type="radio" name="pgto" value="Cartão de crédito"> Cartão de crédito</label>
+        <label class="opcao"><input type="radio" name="pgto" value="Dinheiro"> Dinheiro</label>
+      </div>
+      <div id="campoPix" style="margin-top:9px;background:#fff;border-radius:10px;padding:12px;font-size:13px">
+        <b style="display:block;font-size:12px;color:var(--cinza)">Chave PIX da loja</b>
+        <span id="chavePix" style="font-weight:700"></span>
+      </div>
+      <div id="campoTroco" style="display:none;margin-top:9px">
+        <label class="campo"><span>Precisa de troco para quanto?</span><input type="number" id="troco" step="1" min="0" placeholder="50"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Seu nome</legend>
+      <input type="text" id="nomeCliente" placeholder="Como a gente te chama?">
+    </fieldset>
+  </div>
+  <div class="rodape-gaveta">
+    <div class="linha"><span>Produtos</span><span id="subtotal">R$ 0,00</span></div>
+    <div class="linha"><span>Entrega</span><span id="linhaTaxa">R$ 0,00</span></div>
+    <div class="linha total"><span>Total</span><span id="total">R$ 0,00</span></div>
+    <button class="b-finalizar" id="finalizar" disabled>Enviar pedido no WhatsApp</button>
+    <p class="aviso">O pedido fica registrado na loja e chega no WhatsApp já escrito. O pagamento é feito na entrega ou na retirada.</p>
+  </div>
+</aside>
+
+<div class="recado" id="recado"></div>
+<script src="loja.js"></script>
+</body>
+</html>
