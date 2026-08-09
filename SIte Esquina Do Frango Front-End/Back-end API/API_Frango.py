@@ -1,12 +1,12 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 from datetime import datetime
 from dotenv import load_dotenv
 from redis import Redis
-from sqlalchemy import Column, Integer, String, DateTime, select
+from sqlalchemy import Column, Integer, String, Float, DateTime, select
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import declarative_base
 
@@ -44,26 +44,36 @@ app.add_middleware(
 )
 security = HTTPBasic()
 
+# Categorias fixas do mercadinho (sem bebidas alcoólicas).
+CATEGORIAS_VALIDAS = [
+    "Frango e Carnes",
+    "Frios e Laticínios",
+    "Mercearia",
+    "Higiene e Limpeza",
+]
+
+
 class Produtos(Base):
     __tablename__ = "produtos"
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False)
     descricao = Column(String, nullable=True)
-    preco_de_unidade = Column(Integer, nullable=False)
-    preco_do_kilo = Column(Integer, nullable=False)
+    categoria = Column(String, nullable=False, default="Mercearia")
+    preco_de_unidade = Column(Float, nullable=False)
+    preco_do_kilo = Column(Float, nullable=True)
     data_criacao = Column(DateTime, nullable=False)
     validade_do_produto = Column(Integer, nullable=False, default=1)
 
 class ProdutoBase(BaseModel):
     nome: str
     descricao: Optional[str] = None
-    preco_de_unidade: int
-    preco_do_kilo: int
+    categoria: str = "Mercearia"
+    preco_de_unidade: float
+    preco_do_kilo: Optional[float] = None
     data_criacao: datetime
     validade_do_produto: int = 1
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class ProdutoCreate(ProdutoBase):
     pass
@@ -71,13 +81,13 @@ class ProdutoCreate(ProdutoBase):
 class ProdutoUpdate(BaseModel):
     nome: Optional[str] = None
     descricao: Optional[str] = None
-    preco_de_unidade: Optional[int] = None
-    preco_do_kilo: Optional[int] = None
+    categoria: Optional[str] = None
+    preco_de_unidade: Optional[float] = None
+    preco_do_kilo: Optional[float] = None
     data_criacao: Optional[datetime] = None
     validade_do_produto: Optional[int] = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class ProdutoResponse(ProdutoBase):
     id: int
@@ -105,9 +115,16 @@ async def startup_event():
 async def verificar_status_pedido(pedido_id: str):
     return {"pedido_id": pedido_id, "status": "pendente"}
 
+@app.get("/categorias", response_model=List[str])
+async def listar_categorias():
+    return CATEGORIAS_VALIDAS
+
 @app.get("/produtos", response_model=List[ProdutoResponse])
-async def listar_produtos(db: AsyncSession = Depends(sessao_db)):
-    resultado = await db.execute(select(Produtos))
+async def listar_produtos(categoria: Optional[str] = None, db: AsyncSession = Depends(sessao_db)):
+    consulta = select(Produtos)
+    if categoria:
+        consulta = consulta.where(Produtos.categoria == categoria)
+    resultado = await db.execute(consulta)
     return resultado.scalars().all()
 
 @app.get("/produtos/{produto_id}", response_model=ProdutoResponse)
@@ -123,6 +140,11 @@ async def criar_produto(
     db: AsyncSession = Depends(sessao_db),
     _: None = Depends(verificar_autenticacao),
 ):
+    if produto.categoria not in CATEGORIAS_VALIDAS:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Categoria inválida. Use uma de: {', '.join(CATEGORIAS_VALIDAS)}",
+        )
     novo_produto = Produtos(**produto.model_dump())
     db.add(novo_produto)
     await db.commit()
@@ -139,7 +161,13 @@ async def atualizar_produto(
     produto_existente = await db.get(Produtos, produto_id)
     if produto_existente is None:
         raise HTTPException(status_code=404, detail="Produto não encontrado")
-    for campo, valor in produto.model_dump(exclude_unset=True).items():
+    dados = produto.model_dump(exclude_unset=True)
+    if "categoria" in dados and dados["categoria"] not in CATEGORIAS_VALIDAS:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Categoria inválida. Use uma de: {', '.join(CATEGORIAS_VALIDAS)}",
+        )
+    for campo, valor in dados.items():
         setattr(produto_existente, campo, valor)
     await db.commit()
     await db.refresh(produto_existente)

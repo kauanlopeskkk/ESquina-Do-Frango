@@ -3,13 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESquina do Frango</title>
-<link rel="stylesheet" href="style.css">
+    <title>Eskina do Frango | Mercadinho de bairro</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen bg-neutral-50 flex items-center justify-center">
-<div class="container mx-auto px-6 py-12 text-center">
-    <h1 class="text-4xl font-bold text-neutral-900">Esquina do Frango E Frios</h1>
-    <p class="mt-4 text-lg text-neutral-600">Bem-vindo ao nosso Mercado!</p>
-</div>
+<body class="min-h-screen bg-neutral-50 font-display">
+
+    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-neutral-200">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center gap-2 text-emerald-800 font-bold text-xl">
+                <span class="text-2xl">🐔</span> Eskina do Frango
+            </a>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-700">
+                <a href="#inicio" class="hover:text-emerald-700">Início</a>
+                <a href="#produtos" class="hover:text-emerald-700">Produtos</a>
+                <a href="#sobre" class="hover:text-emerald-700">Sobre</a>
+                <a href="#contato" class="hover:text-emerald-700">Contato</a>
+            </nav>
+            <a
+                href="https://wa.me/5500000000000"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-full transition"
+            >
+                Chamar no WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero-frango relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 flex flex-col items-center text-center relative">
+            <span class="badge-selo inline-block px-5 py-2 rounded-full text-emerald-900 text-xs font-bold uppercase tracking-wide shadow-lg mb-6">
+                ⭐ Qualidade Garantida ⭐
+            </span>
+            <h1 class="hero-title text-5xl md:text-7xl font-bold text-yellow-400 leading-tight">
+                Eskina do Frango
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-white font-semibold drop-shadow">
+                Frango Fresco Todo Dia!
+            </p>
+            <p class="mt-3 max-w-xl text-emerald-50">
+                Seu mercadinho de bairro: frango e carnes, frios, mercearia e produtos de higiene
+                com preço justo e qualidade garantida.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                <a
+                    href="https://wa.me/5500000000000"
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center justify-center gap-2 bg-white text-emerald-800 font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition"
+                >
+                    📲 Chame no WhatsApp
+                </a>
+                <a
+                    href="#produtos"
+                    class="inline-flex items-center justify-center gap-2 bg-emerald-900/40 border border-white/40 text-white font-semibold px-6 py-3 rounded-full hover:bg-emerald-900/60 transition"
+                >
+                    Ver produtos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 -mt-10 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white rounded-2xl shadow-md p-4 text-center border border-neutral-100">
+                <div class="text-3xl mb-1">🍗</div>
+                <p class="text-sm font-semibold text-neutral-800">Frango e Carnes</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-4 text-center border border-neutral-100">
+                <div class="text-3xl mb-1">🧀</div>
+                <p class="text-sm font-semibold text-neutral-800">Frios e Laticínios</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-4 text-center border border-neutral-100">
+                <div class="text-3xl mb-1">🛒</div>
+                <p class="text-sm font-semibold text-neutral-800">Mercearia</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-4 text-center border border-neutral-100">
+                <div class="text-3xl mb-1">🧼</div>
+                <p class="text-sm font-semibold text-neutral-800">Higiene e Limpeza</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="produtos" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-neutral-900">Nossos Produtos</h2>
+            <p class="text-neutral-500 mt-2">Direto do mercadinho para sua mesa.</p>
+        </div>
+
+        <div id="filtros-categoria" class="flex flex-wrap items-center justify-center gap-2 mb-10"></div>
+
+        <p id="estado-produtos" class="text-center text-neutral-500 mb-6 hidden"></p>
+
+        <div id="grid-produtos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <section id="sobre" class="bg-emerald-50 border-y border-emerald-100">
+        <div class="max-w-4xl mx-auto px-6 py-14 text-center">
+            <h2 class="text-2xl font-bold text-emerald-900">Do bairro para o bairro</h2>
+            <p class="mt-3 text-neutral-600">
+                Somos um mercadinho de família: frango fresco todo dia, frios, mercearia e itens de
+                higiene e limpeza para o dia a dia. Aqui você não encontra bebida alcoólica — o foco
+                é atender bem a vizinhança com produtos de qualidade e preço justo.
+            </p>
+        </div>
+    </section>
+
+    <footer id="contato" class="bg-emerald-900 text-emerald-50">
+        <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-lg">🐔 Eskina do Frango</p>
+                <p class="text-sm text-emerald-200 mt-1">Frango fresco todo dia!</p>
+            </div>
+            <a
+                href="https://wa.me/5500000000000"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 bg-white text-emerald-800 font-semibold px-5 py-2 rounded-full hover:bg-emerald-50 transition"
+            >
+                📲 Chamar no WhatsApp
+            </a>
+        </div>
+        <div class="text-center text-xs text-emerald-300 pb-6">
+            © 2026 Eskina do Frango. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

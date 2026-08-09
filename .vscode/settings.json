@@ -1,3 +1,4 @@
 {
-    "python.defaultInterpreterPath": "C:\\Users\\FAMILIA\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\esquina-do-frango-4aHZV-sI-py3.14\\Scripts\\python.exe"
+    "python.defaultInterpreterPath": "C:\\Users\\FAMILIA\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\esquina-do-frango-4aHZV-sI-py3.14\\Scripts\\python.exe",
+    "claudeCodeChat.permissions.yoloMode": false
 }

@@ -1,2 +1,7 @@
 # ESquina-Do-Frango
 
+PARA  FICAR DE OLHO MEU SITE HACKERS MIZERAVEL
+
+
+
+

@@ -1,1 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Fredoka", ui-rounded, "Segoe UI", sans-serif;
+}
+
+@layer components {
+  .hero-frango {
+    background-color: #0d7a3a;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255, 214, 10, 0.35), transparent 42%),
+      radial-gradient(circle at 88% 82%, rgba(255, 214, 10, 0.25), transparent 45%),
+      repeating-linear-gradient(135deg, #0d7a3a 0px, #0d7a3a 70px, #0a6631 70px, #0a6631 140px);
+  }
+
+  .hero-title {
+    -webkit-text-stroke: 2px #06301b;
+    text-shadow: 0 4px 0 #06301b, 0 10px 22px rgba(0, 0, 0, 0.35);
+  }
+
+  .badge-selo {
+    background: conic-gradient(from 0deg, #ffd60a, #ffb703, #ffd60a, #ffb703, #ffd60a);
+  }
+
+  .product-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 28px -12px rgba(6, 48, 27, 0.35);
+  }
+}
