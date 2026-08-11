@@ -5,6 +5,25 @@ const gridEl = document.getElementById("grid-produtos");
 const filtrosEl = document.getElementById("filtros-categoria");
 const estadoEl = document.getElementById("estado-produtos");
 
+const modalEl = document.getElementById("modal-produto");
+const modalOverlayEl = document.getElementById("modal-overlay");
+const modalFecharEl = document.getElementById("modal-fechar");
+const modalImagemEl = document.getElementById("modal-imagem");
+const modalIconeEl = document.getElementById("modal-icone");
+const modalCategoriaEl = document.getElementById("modal-categoria");
+const modalNomeEl = document.getElementById("modal-nome");
+const modalDescricaoEl = document.getElementById("modal-descricao");
+const modalPrecoEl = document.getElementById("modal-preco");
+const modalPrecoKiloEl = document.getElementById("modal-preco-kilo");
+const modalValidadeEl = document.getElementById("modal-validade");
+const modalQtdEl = document.getElementById("modal-qtd");
+const modalQtdMaisEl = document.getElementById("modal-qtd-mais");
+const modalQtdMenosEl = document.getElementById("modal-qtd-menos");
+const modalAddCarrinhoEl = document.getElementById("modal-add-carrinho");
+
+let produtoModalAtual = null;
+let quantidadeModalAtual = 1;
+
 const ICONES_CATEGORIA = {
   "Frango e Carnes": "🍗",
   "Frios e Laticínios": "🧀",
@@ -28,7 +47,7 @@ function cardProduto(produto) {
     : '<div class="flex-1"></div>';
 
   return `
-    <article class="product-card bg-white rounded-2xl shadow-md border border-neutral-100 p-5 flex flex-col">
+    <article data-id="${produto.id}" class="product-card cursor-pointer bg-white rounded-2xl shadow-md border border-neutral-100 p-5 flex flex-col">
       <div class="text-3xl mb-3">${ICONES_CATEGORIA[produto.categoria] || "🛍️"}</div>
       <span class="text-xs font-semibold text-emerald-700 uppercase tracking-wide">${produto.categoria}</span>
       <h3 class="text-lg font-semibold text-neutral-900 mt-1">${produto.nome}</h3>
@@ -37,6 +56,13 @@ function cardProduto(produto) {
         <span class="text-xl font-bold text-emerald-800">${formatarPreco(produto.preco_de_unidade)}</span>
         ${precoKilo}
       </div>
+      <button
+        type="button"
+        data-add-carrinho="${produto.id}"
+        class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 rounded-full transition"
+      >
+        + Adicionar ao carrinho
+      </button>
     </article>
   `;
 }
@@ -57,6 +83,79 @@ function renderizarProdutos() {
   estadoEl.classList.add("hidden");
   gridEl.innerHTML = lista.map(cardProduto).join("");
 }
+
+function abrirModal(produto) {
+  produtoModalAtual = produto;
+  quantidadeModalAtual = 1;
+  modalQtdEl.textContent = "1";
+  modalCategoriaEl.textContent = produto.categoria;
+  modalNomeEl.textContent = produto.nome;
+  modalDescricaoEl.textContent = produto.descricao || "";
+  modalDescricaoEl.classList.toggle("hidden", !produto.descricao);
+  modalPrecoEl.textContent = formatarPreco(produto.preco_de_unidade);
+  modalPrecoKiloEl.textContent = produto.preco_do_kilo
+    ? `${formatarPreco(produto.preco_do_kilo)}/kg`
+    : "";
+  modalValidadeEl.textContent = produto.validade_do_produto
+    ? `Validade: ${produto.validade_do_produto} dia(s)`
+    : "";
+
+  if (produto.imagem_url) {
+    modalImagemEl.src = produto.imagem_url;
+    modalImagemEl.alt = produto.nome;
+    modalImagemEl.classList.remove("hidden");
+    modalIconeEl.classList.add("hidden");
+  } else {
+    modalImagemEl.classList.add("hidden");
+    modalIconeEl.textContent = ICONES_CATEGORIA[produto.categoria] || "🛍️";
+    modalIconeEl.classList.remove("hidden");
+  }
+
+  modalEl.classList.remove("hidden");
+  modalEl.classList.add("flex");
+}
+
+function fecharModal() {
+  modalEl.classList.add("hidden");
+  modalEl.classList.remove("flex");
+  modalImagemEl.src = "";
+}
+
+modalFecharEl.addEventListener("click", fecharModal);
+modalOverlayEl.addEventListener("click", fecharModal);
+document.addEventListener("keydown", (evento) => {
+  if (evento.key === "Escape") fecharModal();
+});
+
+gridEl.addEventListener("click", (evento) => {
+  const botaoAdd = evento.target.closest("[data-add-carrinho]");
+  if (botaoAdd) {
+    const produto = produtosCache.find((p) => String(p.id) === botaoAdd.dataset.addCarrinho);
+    if (produto) adicionarAoCarrinho(produto, 1);
+    return;
+  }
+
+  const card = evento.target.closest(".product-card");
+  if (!card) return;
+  const produto = produtosCache.find((p) => String(p.id) === card.dataset.id);
+  if (produto) abrirModal(produto);
+});
+
+modalQtdMaisEl.addEventListener("click", () => {
+  quantidadeModalAtual += 1;
+  modalQtdEl.textContent = String(quantidadeModalAtual);
+});
+
+modalQtdMenosEl.addEventListener("click", () => {
+  quantidadeModalAtual = Math.max(1, quantidadeModalAtual - 1);
+  modalQtdEl.textContent = String(quantidadeModalAtual);
+});
+
+modalAddCarrinhoEl.addEventListener("click", () => {
+  if (!produtoModalAtual) return;
+  adicionarAoCarrinho(produtoModalAtual, quantidadeModalAtual);
+  fecharModal();
+});
 
 function renderizarFiltros(categorias) {
   const todas = ["Todos", ...categorias];

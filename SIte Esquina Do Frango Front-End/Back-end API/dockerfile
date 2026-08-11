@@ -1,1 +1,20 @@
-FROM python: 3.14
+# Build context deve ser a raiz do repositório (onde ficam pyproject.toml e poetry.lock).
+FROM python:3.14-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_CREATE=false
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir "poetry>=2,<3"
+
+COPY pyproject.toml poetry.lock README.md ./
+RUN poetry install --no-root
+
+COPY ["SIte Esquina Do Frango Front-End/Back-end API", "./"]
+
+EXPOSE 8000
+
+CMD ["uvicorn", "API_Frango:app", "--host", "0.0.0.0", "--port", "8000"]

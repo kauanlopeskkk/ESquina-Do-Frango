@@ -1,0 +1,53 @@
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: "SIte Esquina Do Frango Front-End/Back-end API/dockerfile"
+    env_file:
+      - "SIte Esquina Do Frango Front-End/Back-end API/.env"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    volumes:
+      - "./SIte Esquina Do Frango Front-End/Back-end API/Mercado.db:/app/Mercado.db"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  celery-worker:
+    build:
+      context: .
+      dockerfile: "SIte Esquina Do Frango Front-End/Back-end API/dockerfile"
+    command: ["celery", "-A", "Celery_Frango.celery_app", "worker", "--loglevel=info"]
+    env_file:
+      - "SIte Esquina Do Frango Front-End/Back-end API/.env"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  frontend:
+    image: nginx:alpine
+    volumes:
+      - "./SIte Esquina Do Frango Front-End/EskinaDoFrango.html:/usr/share/nginx/html/EskinaDoFrango.html:ro"
+      - "./SIte Esquina Do Frango Front-End/style.css:/usr/share/nginx/html/style.css:ro"
+      - "./SIte Esquina Do Frango Front-End/assets:/usr/share/nginx/html/assets:ro"
+      - "./SIte Esquina Do Frango Front-End/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  redis_data:

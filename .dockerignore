@@ -1,0 +1,9 @@
+.git/
+.claude/
+.vscode/
+**/node_modules/
+**/__pycache__/
+**/*.pyc
+**/.venv/
+**/*.db
+**/.env

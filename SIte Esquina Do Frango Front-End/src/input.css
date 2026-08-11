@@ -31,4 +31,13 @@
     transform: translateY(-4px);
     box-shadow: 0 16px 28px -12px rgba(6, 48, 27, 0.35);
   }
+
+  .pagamento-opcao:has(input:checked) {
+    border-color: #059669;
+    background-color: #ecfdf5;
+  }
+
+  #carrinho-drawer {
+    transition: transform 0.3s ease;
+  }
 }
