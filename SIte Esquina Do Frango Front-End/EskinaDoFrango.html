@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eskina do Frango | Mercadinho de bairro</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body class="min-h-screen bg-neutral-50 font-display">
 
@@ -31,7 +32,7 @@
                     <span id="carrinho-badge" class="hidden absolute -top-2 -right-2 min-w-5 h-5 px-1 bg-emerald-600 text-white text-xs font-bold rounded-full items-center justify-center">0</span>
                 </button>
                 <a
-                    href="https://wa.me/5500000000000"
+                    href="https://wa.me/5581995594418"
                     target="_blank"
                     rel="noopener"
                     class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-full transition"
@@ -50,21 +51,20 @@
             <h1 class="hero-title text-5xl md:text-7xl font-bold text-yellow-400 leading-tight">
                 Eskina do Frango
             </h1>
-            <p class="mt-4 text-xl md:text-2xl text-white font-semibold drop-shadow">
+            <p class="mt-4 text-xl md:text-2xl text-white font-semibold drop-shadow" "font-family: 'Arial", sans-serif;">
                 Frango Fresco Todo Dia!
             </p>
             <p class="mt-3 max-w-xl text-emerald-50">
-                Seu mercadinho de bairro: frango e carnes, frios, mercearia e produtos de higiene
-                com preço justo e qualidade garantida.
+                    Esquina do Frango é o mercadinho de Bairro de RioDoce de Olinda temos produto de qualidade e preço justo, frangos frescos todos os dias, frios, mercearia e itens de higiene e limpeza para o dia a dia. Aqui você não encontra bebida alcoólica — o foco é atender bem a vizinhança com produtos de qualidade e preço justo.
             </p>
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
                 <a
-                    href="https://wa.me/5581995594418"
+                    href="https://wa.me/558195594418"
                     target="_blank"
                     rel="noopener"
                     class="inline-flex items-center justify-center gap-2 bg-white text-emerald-800 font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition"
                 >
-                    📲 Chame no WhatsApp
+                    📲 Nos temos a empresa no WhatsApp
                 </a>
                 <a
                     href="#produtos"
@@ -185,9 +185,22 @@
                     <label class="block text-sm font-medium text-neutral-700 mb-1" for="checkout-email">E-mail</label>
                     <input required id="checkout-email" name="email" type="email" class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" />
                 </div>
-                <div>
+                <div class="mb-3">
+                    <span class="block text-sm font-medium text-neutral-700 mb-1">Como você quer receber?</span>
+                    <div class="flex gap-4">
+                        <label class="flex items-center gap-2 text-sm">
+                            <input type="radio" name="tipo_entrega" value="entrega" class="accent-emerald-600" checked />
+                            Entrega
+                        </label>
+                        <label class="flex items-center gap-2 text-sm">
+                            <input type="radio" name="tipo_entrega" value="retirada" class="accent-emerald-600" />
+                            Retirar no local
+                        </label>
+                    </div>
+                </div>
+                <div id="checkout-endereco-container">
                     <label class="block text-sm font-medium text-neutral-700 mb-1" for="checkout-endereco">Endereço de entrega</label>
-                    <textarea required id="checkout-endereco" name="endereco" rows="2" class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></textarea>
+                    <textarea required id="checkout-endereco" name="endereco" rows="2" class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" placeholder="Rua, número, bairro, cidade..."></textarea>
                 </div>
                 <div>
                     <span class="block text-sm font-medium text-neutral-700 mb-2">Forma de pagamento</span>
@@ -277,7 +290,7 @@
                 rel="noopener"
                 class="inline-flex items-center gap-2 bg-white text-emerald-800 font-semibold px-5 py-2 rounded-full hover:bg-emerald-50 transition"
             >
-                📲 Chamar no WhatsApp
+                📲 Vc pode concetar nosso WhatsApp
             </a>
         </div>
         <div class="text-center text-xs text-emerald-300 pb-6">

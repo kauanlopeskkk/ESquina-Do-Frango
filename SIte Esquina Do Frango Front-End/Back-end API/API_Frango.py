@@ -119,6 +119,7 @@ class ProdutoResponse(ProdutoBase):
 
 
 FORMAS_PAGAMENTO_VALIDAS = ["pix", "cartao", "dinheiro"]
+TIPOS_ENTREGA_VALIDOS = ["entrega", "retirada"]
 
 
 class Pedido(Base):
@@ -127,6 +128,7 @@ class Pedido(Base):
     cliente_nome = Column(String, nullable=False)
     cliente_telefone = Column(String, nullable=False)
     cliente_email = Column(String, nullable=False)
+    tipo_entrega = Column(String, nullable=False, default="entrega")  # entrega | retirada
     endereco_entrega = Column(String, nullable=False)
     itens = Column(String, nullable=False)  # lista de itens serializada em JSON
     total = Column(Float, nullable=False)
@@ -147,7 +149,8 @@ class PedidoCreate(BaseModel):
     cliente_nome: str
     cliente_telefone: str
     cliente_email: str
-    endereco_entrega: str
+    tipo_entrega: str = "entrega"
+    endereco_entrega: Optional[str] = None
     forma_pagamento: str
     itens: List[ItemPedido]
 
@@ -195,6 +198,16 @@ async def startup_event():
         if "imagem_url" not in colunas:
             await conn.execute(text("ALTER TABLE produtos ADD COLUMN imagem_url VARCHAR"))
 
+        colunas_pedidos = await conn.run_sync(
+            lambda sync_conn: [
+                col["name"] for col in sync_conn.dialect.get_columns(sync_conn, "pedidos")
+            ]
+        )
+        if "tipo_entrega" not in colunas_pedidos:
+            await conn.execute(
+                text("ALTER TABLE pedidos ADD COLUMN tipo_entrega VARCHAR NOT NULL DEFAULT 'entrega'")
+            )
+
 @app.get("/ola")
 async def root():
     return {"message": "Bem-vindo à API do Esquina do Frango!"}
@@ -229,6 +242,13 @@ async def criar_pedido(pedido: PedidoCreate, db: AsyncSession = Depends(sessao_d
             status_code=422,
             detail=f"Forma de pagamento inválida. Use uma de: {', '.join(FORMAS_PAGAMENTO_VALIDAS)}",
         )
+    if pedido.tipo_entrega not in TIPOS_ENTREGA_VALIDOS:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Tipo de entrega inválido. Use uma de: {', '.join(TIPOS_ENTREGA_VALIDOS)}",
+        )
+    if pedido.tipo_entrega == "entrega" and not (pedido.endereco_entrega or "").strip():
+        raise HTTPException(status_code=422, detail="Endereço de entrega é obrigatório")
     if not pedido.itens:
         raise HTTPException(status_code=422, detail="O pedido precisa ter ao menos um item")
 
@@ -239,7 +259,8 @@ async def criar_pedido(pedido: PedidoCreate, db: AsyncSession = Depends(sessao_d
         cliente_nome=pedido.cliente_nome,
         cliente_telefone=pedido.cliente_telefone,
         cliente_email=pedido.cliente_email,
-        endereco_entrega=pedido.endereco_entrega,
+        tipo_entrega=pedido.tipo_entrega,
+        endereco_entrega=pedido.endereco_entrega or "",
         itens=json.dumps([item.model_dump() for item in pedido.itens]),
         total=total,
         forma_pagamento=pedido.forma_pagamento,

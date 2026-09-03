@@ -24,6 +24,8 @@ const checkoutFecharEl = document.getElementById("checkout-fechar");
 const formCheckoutEl = document.getElementById("form-checkout");
 const checkoutErroEl = document.getElementById("checkout-erro");
 const checkoutContinuarEl = document.getElementById("checkout-continuar");
+const checkoutEnderecoContainerEl = document.getElementById("checkout-endereco-container");
+const checkoutEnderecoEl = document.getElementById("checkout-endereco");
 
 const modalPagamentoEl = document.getElementById("modal-pagamento");
 const pagamentoFecharEl = document.getElementById("pagamento-fechar");
@@ -37,6 +39,9 @@ const pixCopiaColaEl = document.getElementById("pix-copia-cola");
 const pixCopiarEl = document.getElementById("pix-copiar");
 const pixStatusEl = document.getElementById("pix-status");
 const cartaoIndisponivelEl = document.getElementById("cartao-indisponivel");
+
+
+
 
 function salvarCarrinho() {
   localStorage.setItem(CHAVE_CARRINHO, JSON.stringify(carrinho));
@@ -109,7 +114,7 @@ function itemCarrinhoHtml(item) {
 }
 
 function renderizarCarrinho() {
-  if (carrinho.length === 0) {
+if(carrinho.length === 0) {
     carrinhoItensEl.innerHTML = "";
     carrinhoVazioEl.classList.remove("hidden");
     btnFinalizarCompraEl.disabled = true;
@@ -121,6 +126,7 @@ function renderizarCarrinho() {
   carrinhoTotalEl.textContent = formatarPreco(totalCarrinho());
 }
 
+  
 carrinhoItensEl.addEventListener("click", (evento) => {
   const aumentar = evento.target.closest("[data-aumentar]");
   const diminuir = evento.target.closest("[data-diminuir]");
@@ -163,6 +169,14 @@ btnFinalizarCompraEl.addEventListener("click", abrirCheckout);
 checkoutFecharEl.addEventListener("click", fecharCheckout);
 checkoutOverlayEl.addEventListener("click", fecharCheckout);
 
+document.querySelectorAll('input[name="tipo_entrega"]').forEach((radio) => {
+  radio.addEventListener("change", (evento) => {
+    const isRetirada = evento.target.value === "retirada";
+    checkoutEnderecoContainerEl.classList.toggle("hidden", isRetirada);
+    checkoutEnderecoEl.required = !isRetirada;
+  });
+});
+
 formCheckoutEl.addEventListener("submit", async (evento) => {
   evento.preventDefault();
   checkoutErroEl.classList.add("hidden");
@@ -171,12 +185,14 @@ formCheckoutEl.addEventListener("submit", async (evento) => {
 
   const dados = new FormData(formCheckoutEl);
   const formaPagamento = dados.get("forma_pagamento");
+  const tipoEntrega = dados.get("tipo_entrega") || "entrega";
 
   const corpo = {
     cliente_nome: dados.get("nome"),
     cliente_telefone: dados.get("telefone"),
     cliente_email: dados.get("email"),
-    endereco_entrega: dados.get("endereco"),
+    tipo_entrega: tipoEntrega,
+    endereco_entrega: tipoEntrega === "retirada" ? "" : dados.get("endereco"),
     forma_pagamento: formaPagamento,
     itens: carrinho.map((item) => ({
       produto_id: item.id,
@@ -359,3 +375,5 @@ async function iniciarPagamentoCartao() {
 
 atualizarBadge();
 renderizarCarrinho();
+
+
