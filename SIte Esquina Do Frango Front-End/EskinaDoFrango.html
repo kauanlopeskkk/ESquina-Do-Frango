@@ -3,39 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eskina do Frango | Mercadinho de bairro</title>
+    <title>Eskina do Frango | Mercadinho de bairro — Rio Doce, Olinda</title>
+    <meta name="description" content="Eskina do Frango: mercadinho de bairro em Rio Doce, Olinda. Frango fresco todo dia, frios, mercearia, higiene e limpeza com preço justo.">
+    <meta name="theme-color" content="#06301b">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body class="min-h-screen bg-neutral-50 font-display">
 
-    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-neutral-200">
+    <header class="glass sticky top-0 z-20 border-b border-neon-green/20 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-            <a href="#inicio" class="flex items-center gap-2 text-emerald-800 font-bold text-xl">
-                <span class="text-2xl">🐔</span> Eskina do Frango
+            <a href="#inicio" class="flex items-center gap-2 text-neon-green font-bold text-xl">
+                <span class="text-2xl float-emoji" aria-hidden="true">🐔</span> Eskina do Frango
             </a>
-            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-700">
-                <a href="#inicio" class="hover:text-emerald-700">Início</a>
-                <a href="#produtos" class="hover:text-emerald-700">Produtos</a>
-                <a href="#sobre" class="hover:text-emerald-700">Sobre</a>
-                <a href="#contato" class="hover:text-emerald-700">Contato</a>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-text-light">
+                <a href="#inicio" class="nav-link hover:text-neon-green">Início</a>
+                <a href="#produtos" class="nav-link hover:text-neon-green">Produtos</a>
+                <a href="#sobre" class="nav-link hover:text-neon-green">Sobre</a>
+                <a href="#contato" class="nav-link hover:text-neon-green">Contato</a>
             </nav>
             <div class="flex items-center gap-2">
                 <button
                     type="button"
                     id="btn-abrir-carrinho"
                     aria-label="Abrir carrinho"
-                    class="relative inline-flex items-center gap-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-semibold px-3 py-2 rounded-full transition"
+                    class="relative inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-neon-green/30 text-neon-green font-semibold px-3 py-2 rounded-full transition"
                 >
-                    <span class="text-lg">🛒</span>
+                    <span class="text-lg" aria-hidden="true">🛒</span>
                     <span class="hidden sm:inline text-sm">Carrinho</span>
-                    <span id="carrinho-badge" class="hidden absolute -top-2 -right-2 min-w-5 h-5 px-1 bg-emerald-600 text-white text-xs font-bold rounded-full items-center justify-center">0</span>
+                    <span id="carrinho-badge" class="hidden absolute -top-2 -right-2 min-w-5 h-5 px-1 bg-neon-magenta text-white text-xs font-bold rounded-full items-center justify-center">0</span>
                 </button>
                 <a
                     href="https://wa.me/5581995594418"
                     target="_blank"
                     rel="noopener"
-                    class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-full transition"
+                    class="hidden sm:inline-flex btn-glow items-center gap-2 bg-neon-green hover:bg-neon-green/90 text-black text-sm font-semibold px-4 py-2 rounded-full transition shadow-[0_0_15px_rgba(0,255,157,0.5)]"
                 >
                     Chamar no WhatsApp
                 </a>
@@ -45,26 +50,28 @@
 
     <section id="inicio" class="hero-frango relative overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 flex flex-col items-center text-center relative">
-            <span class="badge-selo inline-block px-5 py-2 rounded-full text-emerald-900 text-xs font-bold uppercase tracking-wide shadow-lg mb-6">
+            <span class="hero-anim hero-anim-1 badge-selo badge-pulse inline-block px-5 py-2 rounded-full text-yellow-900 text-xs font-bold uppercase tracking-wide shadow-lg mb-6">
                 ⭐ Qualidade Garantida ⭐
             </span>
-            <h1 class="hero-title text-5xl md:text-7xl font-bold text-yellow-400 leading-tight">
+            <h1 class="hero-title hero-anim hero-anim-2 text-5xl md:text-7xl font-bold leading-tight font-display">
                 Eskina do Frango
             </h1>
-            <p class="mt-4 text-xl md:text-2xl text-white font-semibold drop-shadow" "font-family: 'Arial", sans-serif;">
+            <p class="hero-anim hero-anim-3 mt-4 text-xl md:text-2xl text-white font-semibold drop-shadow">
                 Frango Fresco Todo Dia!
             </p>
-            <p class="mt-3 max-w-xl text-emerald-50">
-                    Esquina do Frango é o mercadinho de Bairro de RioDoce de Olinda temos produto de qualidade e preço justo, frangos frescos todos os dias, frios, mercearia e itens de higiene e limpeza para o dia a dia. Aqui você não encontra bebida alcoólica — o foco é atender bem a vizinhança com produtos de qualidade e preço justo.
+            <p class="hero-anim hero-anim-3 mt-5 max-w-2xl text-base md:text-lg text-emerald-50 leading-relaxed">
+                O mercadinho de bairro do Rio Doce, em Olinda. Frango fresco todos os dias, frios,
+                mercearia e itens de higiene e limpeza para o dia a dia — tudo com preço justo e de
+                qualidade. Aqui você não encontra bebida alcoólica: o foco é atender bem a vizinhança.
             </p>
-            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <div class="hero-anim hero-anim-4 mt-9 flex flex-col sm:flex-row gap-3">
                 <a
-                    href="https://wa.me/558195594418"
+                    href="https://wa.me/5581995594418"
                     target="_blank"
                     rel="noopener"
                     class="inline-flex items-center justify-center gap-2 bg-white text-emerald-800 font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition"
                 >
-                    📲 Nos temos a empresa no WhatsApp
+                    📲 Fale com a gente no WhatsApp
                 </a>
                 <a
                     href="#produtos"
@@ -73,33 +80,53 @@
                     Ver produtos
                 </a>
             </div>
+
+            <dl class="hero-anim hero-anim-4 mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl">
+                <div class="hero-stat">
+                    <dt class="text-2xl md:text-3xl font-bold text-yellow-300">Fresco</dt>
+                    <dd class="text-xs md:text-sm text-emerald-50 mt-1 uppercase tracking-wide opacity-90">Todo dia na prateleira</dd>
+                </div>
+                <div class="hero-stat">
+                    <dt class="text-2xl md:text-3xl font-bold text-yellow-300">4</dt>
+                    <dd class="text-xs md:text-sm text-emerald-50 mt-1 uppercase tracking-wide opacity-90">Setores no mercadinho</dd>
+                </div>
+                <div class="hero-stat">
+                    <dt class="text-2xl md:text-3xl font-bold text-yellow-300">Bairro</dt>
+                    <dd class="text-xs md:text-sm text-emerald-50 mt-1 uppercase tracking-wide opacity-90">Vizinhança atendida</dd>
+                </div>
+                <div class="hero-stat">
+                    <dt class="text-2xl md:text-3xl font-bold text-yellow-300">Pix</dt>
+                    <dd class="text-xs md:text-sm text-emerald-50 mt-1 uppercase tracking-wide opacity-90">Cartão ou dinheiro</dd>
+                </div>
+            </dl>
         </div>
     </section>
 
     <section class="max-w-6xl mx-auto px-6 -mt-10 relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-white rounded-2xl shadow-md p-4 text-center border border-neutral-100">
-                <div class="text-3xl mb-1">🍗</div>
+            <a href="#produtos" class="product-card reveal reveal-stagger bg-white rounded-2xl shadow-md p-5 text-center border border-neutral-100" style="--reveal-delay: 0ms">
+                <div class="text-3xl mb-1 animate-float" aria-hidden="true">🍗</div>
                 <p class="text-sm font-semibold text-neutral-800">Frango e Carnes</p>
-            </div>
-            <div class="bg-white rounded-2xl shadow-md p-4 text-center border border-neutral-100">
-                <div class="text-3xl mb-1">🧀</div>
+            </a>
+            <a href="#produtos" class="product-card reveal reveal-stagger bg-white rounded-2xl shadow-md p-5 text-center border border-neutral-100" style="--reveal-delay: 80ms">
+                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 0.4s">🧀</div>
                 <p class="text-sm font-semibold text-neutral-800">Frios e Laticínios</p>
-            </div>
-            <div class="bg-white rounded-2xl shadow-md p-4 text-center border border-neutral-100">
-                <div class="text-3xl mb-1">🛒</div>
+            </a>
+            <a href="#produtos" class="product-card reveal reveal-stagger bg-white rounded-2xl shadow-md p-5 text-center border border-neutral-100" style="--reveal-delay: 160ms">
+                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 0.8s">🛒</div>
                 <p class="text-sm font-semibold text-neutral-800">Mercearia</p>
-            </div>
-            <div class="bg-white rounded-2xl shadow-md p-4 text-center border border-neutral-100">
-                <div class="text-3xl mb-1">🧼</div>
+            </a>
+            <a href="#produtos" class="product-card reveal reveal-stagger bg-white rounded-2xl shadow-md p-5 text-center border border-neutral-100" style="--reveal-delay: 240ms">
+                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 1.2s">🧼</div>
                 <p class="text-sm font-semibold text-neutral-800">Higiene e Limpeza</p>
-            </div>
+            </a>
         </div>
     </section>
 
     <section id="produtos" class="max-w-6xl mx-auto px-6 py-16">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-neutral-900">Nossos Produtos</h2>
+        <div class="text-center mb-8 reveal">
+            <span class="section-kicker">Nosso estoque</span>
+            <h2 class="mt-3 text-3xl font-bold text-neutral-900">Nossos Produtos</h2>
             <p class="text-neutral-500 mt-2">Direto do mercadinho para sua mesa.</p>
         </div>
 
@@ -136,12 +163,12 @@
                 <span id="modal-validade" class="text-xs text-neutral-500"></span>
             </div>
             <div class="mt-5 flex items-center gap-3">
-                <div class="flex items-center border border-neutral-200 rounded-full">
+                <div class="stepper flex items-center border border-neutral-200 rounded-full">
                     <button type="button" id="modal-qtd-menos" class="w-9 h-9 text-lg text-emerald-800 hover:bg-emerald-50 rounded-full" aria-label="Diminuir quantidade">−</button>
                     <span id="modal-qtd" class="w-8 text-center font-semibold">1</span>
                     <button type="button" id="modal-qtd-mais" class="w-9 h-9 text-lg text-emerald-800 hover:bg-emerald-50 rounded-full" aria-label="Aumentar quantidade">+</button>
                 </div>
-                <button type="button" id="modal-add-carrinho" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-full transition">
+                <button type="button" id="modal-add-carrinho" class="btn-glow flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-full transition shadow-md">
                     Adicionar ao carrinho
                 </button>
             </div>
@@ -161,7 +188,7 @@
                 <span class="font-semibold text-neutral-700">Total</span>
                 <span id="carrinho-total" class="text-xl font-bold text-emerald-800">R$ 0,00</span>
             </div>
-            <button type="button" id="btn-finalizar-compra" class="w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 rounded-full transition">
+            <button type="button" id="btn-finalizar-compra" class="btn-glow w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 rounded-full transition shadow-md">
                 Finalizar compra
             </button>
         </div>
@@ -175,15 +202,15 @@
             <form id="form-checkout" class="space-y-3">
                 <div>
                     <label class="block text-sm font-medium text-neutral-700 mb-1" for="checkout-nome">Nome completo</label>
-                    <input required id="checkout-nome" name="nome" type="text" class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" />
+                    <input required id="checkout-nome" name="nome" type="text" class="field w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" />
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-neutral-700 mb-1" for="checkout-telefone">WhatsApp / Telefone</label>
-                    <input required id="checkout-telefone" name="telefone" type="tel" class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" />
+                    <input required id="checkout-telefone" name="telefone" type="tel" class="field w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" />
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-neutral-700 mb-1" for="checkout-email">E-mail</label>
-                    <input required id="checkout-email" name="email" type="email" class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" />
+                    <input required id="checkout-email" name="email" type="email" class="field w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" />
                 </div>
                 <div class="mb-3">
                     <span class="block text-sm font-medium text-neutral-700 mb-1">Como você quer receber?</span>
@@ -200,7 +227,7 @@
                 </div>
                 <div id="checkout-endereco-container">
                     <label class="block text-sm font-medium text-neutral-700 mb-1" for="checkout-endereco">Endereço de entrega</label>
-                    <textarea required id="checkout-endereco" name="endereco" rows="2" class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" placeholder="Rua, número, bairro, cidade..."></textarea>
+                    <textarea required id="checkout-endereco" name="endereco" rows="2" class="field w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm" placeholder="Rua, número, bairro, cidade..."></textarea>
                 </div>
                 <div>
                     <span class="block text-sm font-medium text-neutral-700 mb-2">Forma de pagamento</span>
@@ -220,7 +247,7 @@
                     </div>
                 </div>
                 <p id="checkout-erro" class="text-sm text-red-600 hidden"></p>
-                <button type="submit" id="checkout-continuar" class="w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold py-3 rounded-full transition">
+                <button type="submit" id="checkout-continuar" class="btn-glow w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold py-3 rounded-full transition shadow-md">
                     Continuar para pagamento
                 </button>
             </form>
@@ -237,8 +264,8 @@
                 <p class="text-sm text-neutral-500 mb-4">Abra o app do seu banco, escaneie o QR Code ou copie o código abaixo.</p>
                 <img id="pix-qrcode" class="w-56 h-56 mx-auto rounded-lg border border-neutral-200" alt="QR Code do Pix" />
                 <div class="mt-4 flex items-center gap-2">
-                    <input id="pix-copia-cola" readonly class="flex-1 border border-neutral-200 rounded-lg px-3 py-2 text-xs text-neutral-600" />
-                    <button type="button" id="pix-copiar" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">Copiar</button>
+                    <input id="pix-copia-cola" readonly class="field flex-1 border border-neutral-200 rounded-lg px-3 py-2 text-xs text-neutral-600" />
+                    <button type="button" id="pix-copiar" class="btn-glow bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">Copiar</button>
                 </div>
                 <p id="pix-status" class="mt-4 text-sm font-medium text-neutral-600">⏳ Aguardando pagamento...</p>
             </div>
@@ -267,34 +294,60 @@
         </div>
     </div>
 
-    <section id="sobre" class="bg-emerald-50 border-y border-emerald-100">
-        <div class="max-w-4xl mx-auto px-6 py-14 text-center">
-            <h2 class="text-2xl font-bold text-emerald-900">Do bairro para o bairro</h2>
-            <p class="mt-3 text-neutral-600">
+    <section id="sobre" class="bg-black/90 border-y border-neon-green/30">
+        <div class="max-w-4xl mx-auto px-6 py-16 text-center">
+            <span class="section-kicker reveal bg-neon-green text-black">Quem somos</span>
+            <h2 class="mt-3 text-3xl font-bold text-white reveal" style="--reveal-delay: 80ms">Do bairro para o bairro</h2>
+            <p class="mt-4 text-text-light leading-relaxed reveal" style="--reveal-delay: 160ms">
                 Somos um mercadinho de família: frango fresco todo dia, frios, mercearia e itens de
                 higiene e limpeza para o dia a dia. Aqui você não encontra bebida alcoólica — o foco
                 é atender bem a vizinhança com produtos de qualidade e preço justo.
             </p>
+
+            <div class="mt-12 grid gap-6 sm:grid-cols-3 text-left">
+                <article class="feature-card reveal reveal-stagger" style="--reveal-delay: 0ms">
+                    <div class="text-3xl mb-2 animate-float" aria-hidden="true">🛒</div>
+                    <h3 class="font-semibold text-white">Pedido pelo site</h3>
+                    <p class="text-sm text-text-light mt-1">
+                        Monte seu carrinho, escolha entrega ou retirada e finalize em poucos cliques.
+                    </p>
+                </article>
+                <article class="feature-card reveal reveal-stagger" style="--reveal-delay: 100ms">
+                    <div class="text-3xl mb-2 animate-float" aria-hidden="true" style="animation-delay: 0.5s">💠</div>
+                    <h3 class="font-semibold text-white">Pix, cartão ou dinheiro</h3>
+                    <p class="text-sm text-text-light mt-1">
+                        Pague do jeito que for melhor pra você — a confirmação cai na hora.
+                    </p>
+                </article>
+                <article class="feature-card reveal reveal-stagger" style="--reveal-delay: 200ms">
+                    <div class="text-3xl mb-2 animate-float" aria-hidden="true" style="animation-delay: 1s">📲</div>
+                    <h3 class="font-semibold text-white">Fale com a gente</h3>
+                    <p class="text-sm text-text-light mt-1">
+                        Tirou dúvida sobre um produto? Chame no WhatsApp e a gente resolve.
+                    </p>
+                </article>
+            </div>
         </div>
     </section>
 
-    <footer id="contato" class="bg-emerald-900 text-emerald-50">
-        <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer id="contato" class="bg-black text-text-light border-t border-neon-magenta/30">
+        <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="text-center md:text-left">
-                <p class="font-bold text-lg">🐔 Eskina do Frango</p>
-                <p class="text-sm text-emerald-200 mt-1">Frango fresco todo dia!</p>
+                <p class="font-bold text-lg text-neon-green">🐔 Eskina do Frango</p>
+                <p class="text-sm text-text-light mt-1">Frango fresco todo dia!</p>
+                <p class="text-sm text-text-light mt-1">Rio Doce, Olinda — PE</p>
             </div>
             <a
                 href="https://wa.me/5581995594418"
                 target="_blank"
                 rel="noopener"
-                class="inline-flex items-center gap-2 bg-white text-emerald-800 font-semibold px-5 py-2 rounded-full hover:bg-emerald-50 transition"
+                class="btn-glow inline-flex items-center gap-2 bg-neon-green text-black font-semibold px-5 py-2 rounded-full hover:bg-neon-green/90 transition shadow-[0_0_15px_rgba(0,255,157,0.5)]"
             >
-                📲 Vc pode concetar nosso WhatsApp
+                📲 Chame no WhatsApp
             </a>
         </div>
-        <div class="text-center text-xs text-emerald-300 pb-6">
-            © 2026 Eskina do Frango. Todos os direitos reservados.
+        <div class="text-center text-xs text-text-light/50 pb-6">
+            © 2027 Eskina do Frango. Todos os direitos reservados.
         </div>
     </footer>
 
