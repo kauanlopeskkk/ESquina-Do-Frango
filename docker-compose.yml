@@ -15,7 +15,7 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
     volumes:
-      - "./SIte Esquina Do Frango Front-End/Back-end API/Mercado.db:/app/Mercado.db"
+      - "./Mercado.db:/app/Mercado.db"
     ports:
       - "8000:8000"
     depends_on:
