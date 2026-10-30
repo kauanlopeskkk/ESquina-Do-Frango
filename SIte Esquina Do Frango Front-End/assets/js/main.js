@@ -46,9 +46,16 @@ function cardProduto(produto) {
     ? `<p class="text-sm text-neutral-500 mt-1 flex-1">${produto.descricao}</p>`
     : '<div class="flex-1"></div>';
 
+  // Mostra a imagem real se o produto tiver imagem_url, senão mostra o emoji da categoria.
+  const imagemOuIcone = produto.imagem_url
+    ? `<div class="w-full h-40 rounded-xl overflow-hidden bg-neutral-100 mb-3 flex items-center justify-center">
+        <img src="${produto.imagem_url}" alt="${produto.nome}" class="w-full h-full object-cover object-center" />
+      </div>`
+    : `<div class="text-3xl mb-3">${ICONES_CATEGORIA[produto.categoria] || "🛍️"}</div>`;
+
   return `
     <article data-id="${produto.id}" class="product-card cursor-pointer bg-white rounded-2xl shadow-md border border-neutral-100 p-5 flex flex-col">
-      <div class="text-3xl mb-3">${ICONES_CATEGORIA[produto.categoria] || "🛍️"}</div>
+      ${imagemOuIcone}
       <span class="text-xs font-semibold text-emerald-700 uppercase tracking-wide">${produto.categoria}</span>
       <h3 class="text-lg font-semibold text-neutral-900 mt-1">${produto.nome}</h3>
       ${descricao}
@@ -207,4 +214,18 @@ async function carregarLoja() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", carregarLoja);
+document.addEventListener("DOMContentLoaded", () => {
+  carregarLoja();
+
+  // Observador para animações de fade-in (reveal)
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+});
