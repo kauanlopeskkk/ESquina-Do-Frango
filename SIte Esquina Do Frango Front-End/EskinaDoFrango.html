@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" href="assets/imagens-comercio/CopyPasta_1793313904181.png" type="image/png">
 </head>
 <body class="min-h-screen bg-neutral-50 font-display">
 
-    <header class="glass sticky top-0 z-20 border-b border-neon-green/20 shadow-sm">
+    <header class="sticky top-0 z-20 border-b border-emerald-500/30" style="background-color: rgba(5, 74, 37, 0.85); backdrop-filter: blur(16px);">
         <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
             <a href="#inicio" class="flex items-center gap-2 text-neon-green font-bold text-xl">
-                <span class="text-2xl float-emoji" aria-hidden="true">🐔</span> Eskina do Frango
+                <span class="text-2xl float-emoji" aria-hidden="true"><img src="assets/imagens-comercio/CopyPasta_1793313904181.png" alt="Imagem-Esquina-Do-Frango" height="70" width="70"></span> Eskina do Frango
             </a>
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-text-light">
                 <a href="#inicio" class="nav-link hover:text-neon-green">Início</a>
@@ -32,7 +32,7 @@
                     aria-label="Abrir carrinho"
                     class="relative inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-neon-green/30 text-neon-green font-semibold px-3 py-2 rounded-full transition"
                 >
-                    <span class="text-lg" aria-hidden="true">🛒</span>
+                    <span class="text-lg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M12,10L10.6,8.6L12.18,7H8V5h4.18l-1.6-1.6L12,2l4,4l-4,4ZM5.59,21.41Q5,20.83 5,20t0.59-1.41T7,18q0.83,0 1.41,0.59Q9,19.18 9,20T8.41,21.41Q7.83,22 7,22T5.59,21.41Zm10,0Q15,20.83 15,20t0.59-1.41T17,18t1.41,0.59Q19,19.18 19,20t-0.59,1.41T17,22t-1.41-0.59ZM1,4V2H4.28l4.25,9h7l3.9-7H21.7l-4.4,7.95q-0.27,0.5-0.74,0.78T15.55,13H8.1L7,15H19v2H7q-1.13,0-1.71-0.98T5.25,14.05L6.6,11.6L3,4H1Z" height="24px" width="24px" bg-green  /></svg></span>
                     <span class="hidden sm:inline text-sm">Carrinho</span>
                     <span id="carrinho-badge" class="hidden absolute -top-2 -right-2 min-w-5 h-5 px-1 bg-neon-magenta text-white text-xs font-bold rounded-full items-center justify-center">0</span>
                 </button>
@@ -71,7 +71,7 @@
                     rel="noopener"
                     class="inline-flex items-center justify-center gap-2 bg-white text-emerald-800 font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition"
                 >
-                    📲 Fale com a gente no WhatsApp
+                     Fale com a gente no WhatsApp
                 </a>
                 <a
                     href="#produtos"
@@ -105,19 +105,21 @@
     <section class="max-w-6xl mx-auto px-6 -mt-10 relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <a href="#produtos" class="product-card reveal reveal-stagger bg-white rounded-2xl shadow-md p-5 text-center border border-neutral-100" style="--reveal-delay: 0ms">
-                <div class="text-3xl mb-1 animate-float" aria-hidden="true">🍗</div>
+                <div class="text-3xl mb-1 animate-float" aria-hidden="true"><img src="/SIte Esquina Do Frango Front-End/assets/imagens-comercio/meat_5222254.png"
+                    
+                     alt="Frango e Carnes" height="70" width="70"></div>
                 <p class="text-sm font-semibold text-neutral-800">Frango e Carnes</p>
             </a>
             <a href="#produtos" class="product-card reveal reveal-stagger bg-white rounded-2xl shadow-md p-5 text-center border border-neutral-100" style="--reveal-delay: 80ms">
-                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 0.4s">🧀</div>
+                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 0.4s"><img src="/SIte Esquina Do Frango Front-End/assets/imagens-comercio/water_1143744.png" alt="Frios e Laticínios" height="70" width="70"></div>
                 <p class="text-sm font-semibold text-neutral-800">Frios e Laticínios</p>
             </a>
             <a href="#produtos" class="product-card reveal reveal-stagger bg-white rounded-2xl shadow-md p-5 text-center border border-neutral-100" style="--reveal-delay: 160ms">
-                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 0.8s">🛒</div>
+                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 0.8s"><img src="/SIte Esquina Do Frango Front-End/assets/imagens-comercio/food-basket_416033.png" alt="Mercearia" height="70" width="70"></div>
                 <p class="text-sm font-semibold text-neutral-800">Mercearia</p>
             </a>
             <a href="#produtos" class="product-card reveal reveal-stagger bg-white rounded-2xl shadow-md p-5 text-center border border-neutral-100" style="--reveal-delay: 240ms">
-                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 1.2s">🧼</div>
+                <div class="text-3xl mb-1 animate-float" aria-hidden="true" style="animation-delay: 1.2s"><img src="/SIte Esquina Do Frango Front-End/assets/imagens-comercio/CopyPasta_1793313672782.png" alt="Higiene e Limpeza" height="70" width="70"></div>
                 <p class="text-sm font-semibold text-neutral-800">Higiene e Limpeza</p>
             </a>
         </div>
@@ -149,7 +151,7 @@
                 &times;
             </button>
             <div id="modal-imagem-wrap" class="w-full h-48 rounded-xl overflow-hidden bg-neutral-100 flex items-center justify-center text-6xl mb-4">
-                <img id="modal-imagem" src="" alt="" class="w-full h-full object-cover hidden" />
+                <img id="modal-imagem" src="" alt="" class="w-full h-full object-cover object-center hidden" />
                 <span id="modal-icone"></span>
             </div>
             <span id="modal-categoria" class="text-xs font-semibold text-emerald-700 uppercase tracking-wide"></span>
@@ -178,7 +180,7 @@
     <div id="carrinho-overlay" class="fixed inset-0 z-40 hidden bg-neutral-900/60"></div>
     <aside id="carrinho-drawer" class="fixed top-0 right-0 z-50 h-full w-full sm:w-96 bg-white shadow-lg translate-x-full transition flex flex-col">
         <div class="flex items-center justify-between p-4 border-b border-neutral-200">
-            <h2 class="text-lg font-bold text-neutral-900">🛒 Seu carrinho</h2>
+            <h2 class="text-lg font-bold text-neutral-900"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M5.59,21.41Q5,20.83 5,20t0.59-1.41T7,18q0.83,0 1.41,0.59Q9,19.18 9,20T8.41,21.41Q7.83,22 7,22T5.59,21.41Zm10,0Q15,20.83 15,20t0.59-1.41T17,18t1.41,0.59Q19,19.18 19,20t-0.59,1.41T17,22t-1.41-0.59ZM6.15,6l2.4,5h7L18.3,6H6.15ZM5.2,4H19.95q0.57,0 0.88,0.51t0.02,1.04l-3.55,6.4q-0.27,0.5-0.74,0.78T15.55,13H8.1L7,15H19v2H7q-1.13,0-1.7-0.99q-0.58-0.99-0.05-1.96L6.6,11.6L3,4H1V2H4.25L5.2,4Zm3.35,7h7h-7Z"/></svg> Seu carrinho</h2>
             <button type="button" id="carrinho-fechar" class="text-neutral-400 hover:text-neutral-700 text-xl leading-none" aria-label="Fechar carrinho">&times;</button>
         </div>
         <div id="carrinho-itens" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
@@ -294,60 +296,77 @@
         </div>
     </div>
 
-    <section id="sobre" class="bg-black/90 border-y border-neon-green/30">
-        <div class="max-w-4xl mx-auto px-6 py-16 text-center">
-            <span class="section-kicker reveal bg-neon-green text-black">Quem somos</span>
-            <h2 class="mt-3 text-3xl font-bold text-white reveal" style="--reveal-delay: 80ms">Do bairro para o bairro</h2>
-            <p class="mt-4 text-text-light leading-relaxed reveal" style="--reveal-delay: 160ms">
-                Somos um mercadinho de família: frango fresco todo dia, frios, mercearia e itens de
-                higiene e limpeza para o dia a dia. Aqui você não encontra bebida alcoólica — o foco
-                é atender bem a vizinhança com produtos de qualidade e preço justo.
+    <section id="sobre" class="bg-neutral-900 py-16 px-4 md:px-6">
+        <div class="max-w-4xl mx-auto rounded-3xl p-6 md:p-12 shadow-2xl text-center" style="background-color: #064e3b;">
+            <!-- Etiqueta / Kicker -->
+            <span class="inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-emerald-300 text-emerald-950 mb-4 reveal">
+                Quem somos
+            </span>
+
+            <!-- Título -->
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 reveal" style="--reveal-delay: 80ms">
+                Do bairro para a sua família
+            </h2>
+
+
+            <!-- Parágrafo principal -->
+            <p class="text-slate-100 text-base md:text-lg leading-relaxed mb-10 reveal" style="--reveal-delay: 160ms; color: #f1f5f9;">
+                O <strong>Eskina do Frango</strong> nasceu com um propósito simples: ser o ponto de apoio da nossa vizinhança em Rio Doce, Olinda.
+                Somos um mercadinho de família onde você encontra frango fresco todo dia, frios selecionados, mercearia completa e itens
+                de limpeza para o dia a dia. Aqui, nosso compromisso é com o atendimento de qualidade, preço justo e um ambiente
+                seguro e 100% voltado para a família — sem venda de bebidas alcoólicas. Do nosso balcão para a sua mesa, com todo o carinho!
             </p>
 
-            <div class="mt-12 grid gap-6 sm:grid-cols-3 text-left">
-                <article class="feature-card reveal reveal-stagger" style="--reveal-delay: 0ms">
-                    <div class="text-3xl mb-2 animate-float" aria-hidden="true">🛒</div>
-                    <h3 class="font-semibold text-white">Pedido pelo site</h3>
-                    <p class="text-sm text-text-light mt-1">
-                        Monte seu carrinho, escolha entrega ou retirada e finalize em poucos cliques.
+            <!-- Cards internos -->
+            <div class="grid gap-6 sm:grid-cols-3 text-left">
+                <article class="reveal reveal-stagger bg-white rounded-2xl p-6 shadow-lg" style="--reveal-delay: 0ms">
+                    <div class="text-3xl mb-3" aria-hidden="true">🛒</div>
+                    <h3 class="font-bold text-neutral-900 text-lg mb-1">Pedido pelo site</h3>
+                    <p class="text-sm text-neutral-600 leading-relaxed">
+                        Monte seu carrinho, escolha entrega rápida ou retirada no local e finalize em poucos cliques.
                     </p>
                 </article>
-                <article class="feature-card reveal reveal-stagger" style="--reveal-delay: 100ms">
-                    <div class="text-3xl mb-2 animate-float" aria-hidden="true" style="animation-delay: 0.5s">💠</div>
-                    <h3 class="font-semibold text-white">Pix, cartão ou dinheiro</h3>
-                    <p class="text-sm text-text-light mt-1">
-                        Pague do jeito que for melhor pra você — a confirmação cai na hora.
+
+                <article class="reveal reveal-stagger bg-white rounded-2xl p-6 shadow-lg" style="--reveal-delay: 100ms">
+                    <div class="text-3xl mb-3" aria-hidden="true">💠</div>
+                    <h3 class="font-bold text-neutral-900 text-lg mb-1">Pix, cartão ou dinheiro</h3>
+                    <p class="text-sm text-neutral-600 leading-relaxed">
+                        Pague do jeito que for melhor pra você — com segurança e praticidade na hora da compra ou entrega.
                     </p>
                 </article>
-                <article class="feature-card reveal reveal-stagger" style="--reveal-delay: 200ms">
-                    <div class="text-3xl mb-2 animate-float" aria-hidden="true" style="animation-delay: 1s">📲</div>
-                    <h3 class="font-semibold text-white">Fale com a gente</h3>
-                    <p class="text-sm text-text-light mt-1">
-                        Tirou dúvida sobre um produto? Chame no WhatsApp e a gente resolve.
+
+                <article class="reveal reveal-stagger bg-white rounded-2xl p-6 shadow-lg" style="--reveal-delay: 200ms">
+                    <div class="text-3xl mb-3" aria-hidden="true">📲</div>
+                    <h3 class="font-bold text-neutral-900 text-lg mb-1">Atendimento próximo</h3>
+                    <p class="text-sm text-neutral-600 leading-relaxed">
+                        Tirou dúvida sobre um produto ou corte de frango? Chame no WhatsApp e a gente resolve rapidinho.
                     </p>
                 </article>
             </div>
         </div>
     </section>
 
-    <footer id="contato" class="bg-black text-text-light border-t border-neon-magenta/30">
-        <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer id="contato" class="hero-frango relative overflow-hidden text-white border-t border-emerald-500/40">
+        <div class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
             <div class="text-center md:text-left">
-                <p class="font-bold text-lg text-neon-green">🐔 Eskina do Frango</p>
-                <p class="text-sm text-text-light mt-1">Frango fresco todo dia!</p>
-                <p class="text-sm text-text-light mt-1">Rio Doce, Olinda — PE</p>
+                <p class="font-bold text-xl text-yellow-300 flex items-center justify-center md:justify-start gap-2">
+                    <span><img src="assets/imagens-comercio/CopyPasta_1793313904181.png" alt="foto ddde gr" height ="70" width="70"></span> Eskina do Frango
+                </p>
+                <p class="text-sm text-emerald-100 mt-1">Frango fresco todo dia na sua mesa!</p>
+                <p class="text-sm text-emerald-100 mt-1"> Rio Doce, Olinda — PE</p>
+                <p class="text-sm text-yellow-300 mt-2 font-medium">✉️ Contato: contato@eskinadofrango.com</p>
             </div>
             <a
                 href="https://wa.me/5581995594418"
                 target="_blank"
                 rel="noopener"
-                class="btn-glow inline-flex items-center gap-2 bg-neon-green text-black font-semibold px-5 py-2 rounded-full hover:bg-neon-green/90 transition shadow-[0_0_15px_rgba(0,255,157,0.5)]"
+                class="btn-glow inline-flex items-center gap-2 bg-white text-emerald-900 font-bold px-6 py-3 rounded-full hover:bg-emerald-50 transition shadow-lg"
             >
-                📲 Chame no WhatsApp
+                 Chame no WhatsApp
             </a>
         </div>
-        <div class="text-center text-xs text-text-light/50 pb-6">
-            © 2027 Eskina do Frango. Todos os direitos reservados.
+        <div class="text-center text-xs text-emerald-200/70 pb-6 border-t border-white/10 pt-4 relative z-10">
+            © 2027 Eskina do Frango. Todos os direitos reservados. Desenvolvido com carinho para a vizinhança.
         </div>
     </footer>
 

@@ -138,9 +138,9 @@
 
   /* ---------- Glassmorphism ---------- */
   .glass {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(5, 74, 37, 0.82);
     backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 157, 0.3);
   }
 
   .glass-dark {

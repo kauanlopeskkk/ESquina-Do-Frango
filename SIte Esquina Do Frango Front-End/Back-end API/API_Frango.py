@@ -208,6 +208,169 @@ async def startup_event():
                 text("ALTER TABLE pedidos ADD COLUMN tipo_entrega VARCHAR NOT NULL DEFAULT 'entrega'")
             )
 
+    # Popula o banco com produtos iniciais caso esteja vazio.
+    async with SessionLocal() as db:
+        resultado = await db.execute(select(Produtos))
+        if not resultado.scalars().first():
+            produtos_iniciais = [
+                # ── Frango e Carnes ──
+                Produtos(
+                    nome="Frango Inteiro Resfriado",
+                    descricao="Frango inteiro resfriado, aproximadamente 1.5kg. Direto do fornecedor todo dia.",
+                    categoria="Frango e Carnes",
+                    preco_de_unidade=18.90,
+                    preco_do_kilo=12.50,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=5,
+                ),
+                Produtos(
+                    nome="Peito de Frango",
+                    descricao="Peito de frango sem osso, limpo e embalado. Ideal para o dia a dia.",
+                    categoria="Frango e Carnes",
+                    preco_de_unidade=14.90,
+                    preco_do_kilo=17.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=5,
+                ),
+                Produtos(
+                    nome="Coxa e Sobrecoxa",
+                    descricao="Coxa e sobrecoxa de frango congelada, pacote com 1kg.",
+                    categoria="Frango e Carnes",
+                    preco_de_unidade=12.50,
+                    preco_do_kilo=12.50,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=7,
+                ),
+                Produtos(
+                    nome="Linguiça Toscana",
+                    descricao="Linguiça toscana artesanal, pacote com 500g. Ótima para churrasco.",
+                    categoria="Frango e Carnes",
+                    preco_de_unidade=9.90,
+                    preco_do_kilo=19.80,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=10,
+                ),
+                # ── Frios e Laticínios ──
+                Produtos(
+                    nome="Queijo Mussarela",
+                    descricao="Mussarela fatiada, 500g. Fresquinha para o lanche.",
+                    categoria="Frios e Laticínios",
+                    preco_de_unidade=15.50,
+                    preco_do_kilo=31.00,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=15,
+                ),
+                Produtos(
+                    nome="Presunto",
+                    descricao="Presunto fatiado, 200g. Ideal para sanduíches.",
+                    categoria="Frios e Laticínios",
+                    preco_de_unidade=7.90,
+                    preco_do_kilo=39.50,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=10,
+                ),
+                Produtos(
+                    nome="Leite Integral 1L",
+                    descricao="Leite integral UHT, caixa de 1 litro.",
+                    categoria="Frios e Laticínios",
+                    preco_de_unidade=5.49,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=90,
+                ),
+                Produtos(
+                    nome="Manteiga 200g",
+                    descricao="Manteiga com sal, pote de 200g.",
+                    categoria="Frios e Laticínios",
+                    preco_de_unidade=8.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=60,
+                ),
+                # ── Mercearia ──
+                Produtos(
+                    nome="Arroz 5kg",
+                    descricao="Arroz branco tipo 1, pacote de 5kg.",
+                    categoria="Mercearia",
+                    preco_de_unidade=22.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=365,
+                ),
+                Produtos(
+                    nome="Feijão Carioca 1kg",
+                    descricao="Feijão carioca tipo 1, pacote de 1kg.",
+                    categoria="Mercearia",
+                    preco_de_unidade=7.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=180,
+                ),
+                Produtos(
+                    nome="Macarrão Espaguete 500g",
+                    descricao="Macarrão espaguete, pacote de 500g. Base do almoço rápido.",
+                    categoria="Mercearia",
+                    preco_de_unidade=4.50,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=365,
+                ),
+                Produtos(
+                    nome="Óleo de Soja 900ml",
+                    descricao="Óleo de soja refinado, garrafa de 900ml.",
+                    categoria="Mercearia",
+                    preco_de_unidade=7.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=365,
+                ),
+                Produtos(
+                    nome="Açúcar 1kg",
+                    descricao="Açúcar cristal, pacote de 1kg.",
+                    categoria="Mercearia",
+                    preco_de_unidade=5.20,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=365,
+                ),
+                Produtos(
+                    nome="Café 500g",
+                    descricao="Café torrado e moído, pacote de 500g. Aroma forte.",
+                    categoria="Mercearia",
+                    preco_de_unidade=14.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=180,
+                ),
+                # ── Higiene e Limpeza ──
+                Produtos(
+                    nome="Detergente 500ml",
+                    descricao="Detergente líquido neutro, frasco de 500ml.",
+                    categoria="Higiene e Limpeza",
+                    preco_de_unidade=2.50,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=730,
+                ),
+                Produtos(
+                    nome="Sabão em Pó 1kg",
+                    descricao="Sabão em pó multiação, pacote de 1kg.",
+                    categoria="Higiene e Limpeza",
+                    preco_de_unidade=9.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=730,
+                ),
+                Produtos(
+                    nome="Água Sanitária 1L",
+                    descricao="Água sanitária para limpeza geral, frasco de 1 litro.",
+                    categoria="Higiene e Limpeza",
+                    preco_de_unidade=3.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=365,
+                ),
+                Produtos(
+                    nome="Papel Higiênico 4 rolos",
+                    descricao="Papel higiênico folha dupla, pacote com 4 rolos.",
+                    categoria="Higiene e Limpeza",
+                    preco_de_unidade=6.90,
+                    data_criacao=datetime.utcnow(),
+                    validade_do_produto=730,
+                ),
+            ]
+            db.add_all(produtos_iniciais)
+            await db.commit()
+
 @app.get("/ola")
 async def root():
     return {"message": "Bem-vindo à API do Esquina do Frango!"}
