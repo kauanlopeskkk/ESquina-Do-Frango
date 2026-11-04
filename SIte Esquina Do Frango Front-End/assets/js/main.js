@@ -20,6 +20,7 @@ const modalQtdEl = document.getElementById("modal-qtd");
 const modalQtdMaisEl = document.getElementById("modal-qtd-mais");
 const modalQtdMenosEl = document.getElementById("modal-qtd-menos");
 const modalAddCarrinhoEl = document.getElementById("modal-add-carrinho");
+const modalObsEl = document.getElementById("modal-obs");
 
 let produtoModalAtual = null;
 let quantidadeModalAtual = 1;
@@ -54,7 +55,7 @@ function cardProduto(produto) {
     : `<div class="text-3xl mb-3">${ICONES_CATEGORIA[produto.categoria] || "🛍️"}</div>`;
 
   return `
-    <article data-id="${produto.id}" class="product-card cursor-pointer bg-white rounded-2xl shadow-md border border-neutral-100 p-5 flex flex-col">
+    <article data-id="${produto.id}" class="product-card">
       ${imagemOuIcone}
       <span class="text-xs font-semibold text-emerald-700 uppercase tracking-wide">${produto.categoria}</span>
       <h3 class="text-lg font-semibold text-neutral-900 mt-1">${produto.nome}</h3>
@@ -66,9 +67,9 @@ function cardProduto(produto) {
       <button
         type="button"
         data-add-carrinho="${produto.id}"
-        class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 rounded-full transition"
+        class="btn-personalizar"
       >
-        + Adicionar ao carrinho
+        Personalizar e adicionar
       </button>
     </article>
   `;
@@ -118,6 +119,10 @@ function abrirModal(produto) {
     modalIconeEl.classList.remove("hidden");
   }
 
+  if (modalObsEl) modalObsEl.value = "";
+  const radioDefault = document.querySelector('input[name="modal_corte"][value="Inteiro / Padrão"]');
+  if (radioDefault) radioDefault.checked = true;
+
   modalEl.classList.remove("hidden");
   modalEl.classList.add("flex");
 }
@@ -137,8 +142,9 @@ document.addEventListener("keydown", (evento) => {
 gridEl.addEventListener("click", (evento) => {
   const botaoAdd = evento.target.closest("[data-add-carrinho]");
   if (botaoAdd) {
+    evento.stopPropagation();
     const produto = produtosCache.find((p) => String(p.id) === botaoAdd.dataset.addCarrinho);
-    if (produto) adicionarAoCarrinho(produto, 1);
+    if (produto) abrirModal(produto);
     return;
   }
 
@@ -160,7 +166,15 @@ modalQtdMenosEl.addEventListener("click", () => {
 
 modalAddCarrinhoEl.addEventListener("click", () => {
   if (!produtoModalAtual) return;
-  adicionarAoCarrinho(produtoModalAtual, quantidadeModalAtual);
+  const corteSelecionado = document.querySelector('input[name="modal_corte"]:checked')?.value || "";
+  const observacaoDigitada = modalObsEl ? modalObsEl.value.trim() : "";
+
+  let obsFinal = corteSelecionado;
+  if (observacaoDigitada) {
+    obsFinal = corteSelecionado ? `${corteSelecionado} - ${observacaoDigitada}` : observacaoDigitada;
+  }
+
+  adicionarAoCarrinho(produtoModalAtual, quantidadeModalAtual, { observacao: obsFinal });
   fecharModal();
 });
 

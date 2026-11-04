@@ -49,8 +49,13 @@ function salvarCarrinho() {
   renderizarCarrinho();
 }
 
-function adicionarAoCarrinho(produto, quantidade = 1) {
-  const item = carrinho.find((i) => i.id === produto.id);
+function adicionarAoCarrinho(produto, quantidade = 1, personalizacao = {}) {
+  quantidade = Number(quantidade);
+  if (!produto || !Number.isInteger(quantidade) || quantidade < 1) return;
+
+  const observacao = personalizacao.observacao || "";
+
+  const item = carrinho.find((i) => String(i.id) === String(produto.id) && (i.observacao || "") === observacao);
   if (item) {
     item.quantidade += quantidade;
   } else {
@@ -59,24 +64,27 @@ function adicionarAoCarrinho(produto, quantidade = 1) {
       nome: produto.nome,
       preco: produto.preco_de_unidade,
       quantidade,
+      observacao,
     });
   }
   salvarCarrinho();
   abrirCarrinho();
 }
 
-function alterarQuantidade(id, delta) {
-  const item = carrinho.find((i) => i.id === id);
+function alterarQuantidade(indice, delta) {
+  const item = carrinho[indice];
   if (!item) return;
   item.quantidade += delta;
   if (item.quantidade <= 0) {
-    carrinho = carrinho.filter((i) => i.id !== id);
+    carrinho.splice(indice, 1);
   }
   salvarCarrinho();
 }
 
 function removerItem(id) {
-  carrinho = carrinho.filter((i) => i.id !== id);
+  const indice = Number(id);
+  if (!Number.isInteger(indice) || indice < 0 || indice >= carrinho.length) return;
+  carrinho.splice(indice, 1);
   salvarCarrinho();
 }
 
@@ -96,19 +104,21 @@ function atualizarBadge() {
   }
 }
 
-function itemCarrinhoHtml(item) {
+function itemCarrinhoHtml(item, indice) {
+  const obsHtml = item.observacao ? `<p class="cart-item-obs">Obs: ${item.observacao}</p>` : "";
   return `
-    <div class="flex items-center gap-3" data-item-id="${item.id}">
-      <div class="flex-1">
-        <p class="text-sm font-semibold text-neutral-900">${item.nome}</p>
-        <p class="text-xs text-neutral-500">${formatarPreco(item.preco)} cada</p>
+    <div class="cart-item" data-item-indice="${indice}">
+      <div class="cart-item-info">
+        <p class="cart-item-name">${item.nome}</p>
+        <p class="cart-item-price">${formatarPreco(item.preco)} cada</p>
+        ${obsHtml}
       </div>
-      <div class="flex items-center border border-neutral-200 rounded-full">
-        <button type="button" data-diminuir="${item.id}" class="w-7 h-7 text-emerald-800 hover:bg-emerald-50 rounded-full" aria-label="Diminuir">−</button>
-        <span class="w-6 text-center text-sm font-semibold">${item.quantidade}</span>
-        <button type="button" data-aumentar="${item.id}" class="w-7 h-7 text-emerald-800 hover:bg-emerald-50 rounded-full" aria-label="Aumentar">+</button>
+      <div class="cart-item-controls">
+        <button type="button" data-diminuir="${indice}" class="cart-ctrl-btn" aria-label="Diminuir">−</button>
+        <span class="cart-qty">${item.quantidade}</span>
+        <button type="button" data-aumentar="${indice}" class="cart-ctrl-btn" aria-label="Aumentar">+</button>
       </div>
-      <button type="button" data-remover="${item.id}" class="text-neutral-400 hover:text-red-600 text-sm" aria-label="Remover">🗑️</button>
+      <button type="button" data-remover="${indice}" class="cart-remove-btn" aria-label="Remover">🗑️</button>
     </div>
   `;
 }
@@ -120,7 +130,7 @@ if(carrinho.length === 0) {
     btnFinalizarCompraEl.disabled = true;
   } else {
     carrinhoVazioEl.classList.add("hidden");
-    carrinhoItensEl.innerHTML = carrinho.map(itemCarrinhoHtml).join("");
+    carrinhoItensEl.innerHTML = carrinho.map((item, indice) => itemCarrinhoHtml(item, indice)).join("");
     btnFinalizarCompraEl.disabled = false;
   }
   carrinhoTotalEl.textContent = formatarPreco(totalCarrinho());
@@ -133,17 +143,17 @@ carrinhoItensEl.addEventListener("click", (evento) => {
   const remover = evento.target.closest("[data-remover]");
   if (aumentar) alterarQuantidade(Number(aumentar.dataset.aumentar), 1);
   if (diminuir) alterarQuantidade(Number(diminuir.dataset.diminuir), -1);
-  if (remover) removerItem(Number(remover.dataset.remover));
+  if (remover) removerItem(remover.dataset.remover);
 });
 
 function abrirCarrinho() {
   carrinhoOverlayEl.classList.remove("hidden");
-  carrinhoDrawerEl.classList.remove("translate-x-full");
+  carrinhoDrawerEl.style.transform = "translateX(0)";
 }
 
 function fecharCarrinho() {
   carrinhoOverlayEl.classList.add("hidden");
-  carrinhoDrawerEl.classList.add("translate-x-full");
+  carrinhoDrawerEl.style.transform = "translateX(100%)";
 }
 
 btnAbrirCarrinhoEl.addEventListener("click", abrirCarrinho);
@@ -196,7 +206,7 @@ formCheckoutEl.addEventListener("submit", async (evento) => {
     forma_pagamento: formaPagamento,
     itens: carrinho.map((item) => ({
       produto_id: item.id,
-      nome: item.nome,
+      nome: item.observacao ? `${item.nome} (${item.observacao})` : item.nome,
       quantidade: item.quantidade,
       preco_unitario: item.preco,
     })),
